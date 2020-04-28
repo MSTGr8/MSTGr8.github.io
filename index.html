@@ -1,90 +1,69 @@
 <!doctype html>
 <html lang="en">
  <head> 
-   <style>
+  <style>
      <!doctype html>
 <html>
  <head> 
   <style>
-     html, body { height: 100%; }
-
-body {
-  background: #3498DB;
-  animation: sky 5s ease 1s infinite;
+    body{
+    margin: 0;
+    overflow: hidden;
+}
+canvas{
+    height: 100%;
+    width: 100%;
 }
 
-.wrapper {
-  display: table;
-  width: 100%;
-  height: 100%;
+/*Sweetalert2 customization*/
+.swal-overlay {
+    background-color: rgba(255, 255, 255, 0.25);
 }
-
-.inner {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
+.swal-modal {
+    background-color: rgba(64, 255, 119, 0.67);
 }
-
-svg #sun-g {
-  transform: translateX(200px);
-  box-shadow:0 0 10px yellow;
-  animation: sun-g 5s ease 1s infinite;
+.swal-title {
+    color: #ffffff;
+    font-size: 26px;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 16px;
 }
-
-svg #sun {
-  transform: translateX(-200px);
-  box-shadow:0 0 10px yellow;
-  animation: sun 5s ease 1s infinite;
+.swal-text {
+    padding: 0px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
 }
-
-@keyframes sky {
-  0% { background: #3498DB; }
-  45%,55% { background: #2C3E50; }
-  100% { background: #3498DB; }
+.swal-footer {
+    overflow: hidden;
 }
-
-@keyframes sun-g {
-  0% { transform: translateX(200px); }
-  45%,55% { transform: translateX(0px); }
-  100% { transform: translateX(-200px); }
+.swal-button--confirm {
+    font-size: 12px;
+    padding: 7px 19px;
+    border-radius: 8px;
+    background-color: rgb(75, 205, 243);
+    color: #ffffff;
+    border: 1px solid #ffffff;
 }
-
-@keyframes sun {
-  0% { transform: translateX(-200px);
-  box-shadow:0 0 10px yellow;
-  box-shadow:0 0 20px yellow;
-  box-shadow:0 0 30px yellow;
-   }
-  45%,55% { transform: translateX(0px);
-   box-shadow:0 0 50px yellow;
-   box-shadow:0 0 60px yellow;
-   box-shadow:0 0 70px yellow;
-   }
-  100% { transform: translateX(200px); 
-  box-shadow:0 0 90px yellow;
-  box-shadow:0 0 100px yellow;
-  box-shadow:0 0 110px yellow;
-  }
+.swal-button--confirm:hover {
+    color: rgb(64, 255, 119);
 }
-     </style> 
- </head> 
- <body> 
-  <div class="wrapper"> 
-   <div class="inner"> 
-    <svg height="200" width="200"> 
-     <mask id="moon"> 
-      <rect x="-200" y="0" width="600" height="200" style="fill:white;" /> 
-      <circle cx="100" cy="100" r="95" style="fill:black;" /> 
-     </mask> 
-     <g id="sun-g" mask="url(#moon)"> 
-      <circle id="sun" cx="100" cy="100" r="100" style="fill:#DBBB34;" /> 
-     </g> 
-    </svg> 
-   </div> 
-  </div> 
- </body>
-</html>
-     </style>
+.swal-button--cancel {
+    font-size: 12px;
+    padding: 7px 19px;
+    border-radius: 8px;
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+.swal-button--cancel:hover {
+    color: rgb(255, 0, 0);
+}
+.swal-button--cancel:focus {
+    box-shadow: none;
+}
+    </style> 
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <script src="https://badasstechie.github.io/lib/three/112.1/three.min.js"></script> 
@@ -112,7 +91,7 @@ svg #sun {
   <script>
         "use strict";
 
-alert('This is my last code here - I\'m leaving. If you\'re interested in what I\'ll be making in future, find me on GitHub (link in the comments). Wish you guys all the best. Peace.');
+alert('Hey sam, akash, .... Any one it is just for fun');
 let scene, camera, renderer, cube, orbitControl, animationFrame;
 let worlds = [], laneWidth = 0.5, glow;
 let sonic, sonicAction = "run", sonicHasCrashed = false, currentLane = 0, maxHeight = 0.5, dRot = 45, strafeDuration = 0.5, actionClock = {startTime: undefined, duration: 667}, animations = {run: undefined, roll: undefined, jump: undefined, fall: undefined, dead: undefined};
@@ -978,8 +957,8 @@ document.addEventListener('touchmove', onTouchMove, false);
 
 //********************
   <!----> 
-    </script>
- </head> 
- <body onload="init()"> 
-</body>
+    </script> 
+ </head>
+ <body> 
+ </body>
 </html>
