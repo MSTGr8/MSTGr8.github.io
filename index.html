@@ -1,45 +1,83 @@
-<!doctype html>
 <html>
  <head> 
-<title>rakhi greetings with voice latest 2020</title>
-  <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet"> 
   <style>
-      *{
-        text-align:center;
-        font-family:'Orbitron';
-        color:orange;
-        font-size:3vh;
-        }
-        body{
-          background-image:url("https://st2.depositphotos.com/1001941/8020/v/950/depositphotos_80205116-stock-illustration-beautiful-rakhi-for-raksha-bandhan.jpg");
-        }  
-    </style> 
+     *{
+       font-size:45px;
+       margin:0;
+       padding:0;
+      }
+     body{
+       background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+     }
+     ul{
+       background-color:#e334e5;
+       margin:20px;
+       padding:20px;
+     }
+    ul li{
+      background-color:#f457e4;
+      padding:10px;
+      margin:5px;
+    }
+    #name{
+       width:82%;
+       border:solid 5px red;
+    }
+    #msg{
+       position:absolute;
+       bottom:0;
+    }
+   </style> 
  </head> 
  <body> 
-  <script type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script> 
-  <h1> Raksha Bandhan Ki Hardik Shubhkamnai</h1> 
-  <br> 
-  <h2>Rasksha Bandhan 2020</h2> 
-  <button id="new" onclick="s()">Click me</button> 
-  <div> 
-   <br> 
-   <br>
-<br>
-<br>
-<br>
-   <a style="color:green;" href="whatsapp://send?text=mstgr8.github.io  राखी कि शुभकामनाएं" data-action="share/whatsapp/share">Share in Whatsapp</a> 
-  </div>
-<br>
-<br>
-<br>
-<br> 
-  <a href='https://www.symptoma.es/'>symptoma.es</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=fedbaf1e6aa9cd88915125d1b4ce44a6c59d7012'></script>
-<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/730409/t/1"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first --> 
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script> 
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries --> 
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-analytics.js"></script> 
   <script>
-alert ("Share with your loved ones on whatsapp");
-   function s(){
-       responsiveVoice.speak("I wish you and your family a very-very happy Raakhi","Hindi Male");
-     }
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDTI1pDmd-Nu9sM5EeGolEpvKkpB4gqw4Q",
+    authDomain: "quotations-2543d.firebaseapp.com",
+    databaseURL: "https://quotations-2543d.firebaseio.com",
+    projectId: "quotations-2543d",
+    storageBucket: "quotations-2543d.appspot.com",
+    messagingSenderId: "49994902115",
+    appId: "1:49994902115:web:61cf0a4ac758d717eee656",
+    measurementId: "G-159PJBX7RV"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script> 
+  <ul id="h"></ul> 
+  <div id="msg"> 
+   <input placeholder="message" autocomplete="false" id="name"> 
+   <button onclick="writeData()">SEND</button> 
+  </div> 
+  <script>
+    var x=prompt("enter name");
+      function writeData(){
+      mssg= document.getElementById("name").value;
+      if((mssg !== "") && (x !== "") && (x !== null)){ 
+     firebase.database().ref("messages").push().set({
+      "sender" : x,
+      "msg" : mssg
+    });
+  }
+  else{
+    alert("message or name can't be empty")
+  }
+  }
+  firebase.database().ref('messages').on('child_added',function(snapshot){
+      var html="";
+      html+="<li>"
+      html+=snapshot.val().sender+" : "+snapshot.val().msg;
+      html+="</li>"
+      document.getElementById("h").innerHTML+=html;
+    });
   </script> 
  </body>
 </html>
