@@ -30,18 +30,18 @@
   </div> 
   <script>
     const auth=firebase.auth();
-    var mail=document.getElementById("email").value;  
-    var pass=document.getElementById("pass").value;
+    var mail=document.getElementById("email");  
+    var pass=document.getElementById("pass");
     function signup()
     {
-      const promise=auth.createUserWithEmailAndPassword(mail, pass);
+      const promise=auth.createUserWithEmailAndPassword(mail.value, pass.value);
       promise.catch(e=>alert(e.message));
       
       alert("Signed Up Account Created");
     }
     function signIn()
     {
-      const promise=auth.signInWithEmailAndPassword(mail, pass);
+      const promise=auth.signInWithEmailAndPassword(mail.value, pass.value);
       promise.catch(e=>alert(e.message));
       
       alert("Signed in "+mail);
