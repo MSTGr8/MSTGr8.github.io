@@ -3,158 +3,49 @@
  <head></head> 
  <body> 
   <!-- The core Firebase JS SDK is always required and must be listed first --> 
-  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script> 
-  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script> 
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries --> 
-  <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script> 
   <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyDRH26k5tqKs4JZWjG0BNuff8Gt0wjt4FU",
-    authDomain: "game-8ebaa.firebaseapp.com",
-    databaseURL: "https://game-8ebaa.firebaseio.com",
-    projectId: "game-8ebaa",
-    storageBucket: "game-8ebaa.appspot.com",
-    messagingSenderId: "795510860695",
-    appId: "1:795510860695:web:3fd877ad90b3fbdfee32d2",
-    measurementId: "G-B0V3Y6G9WS"
+    apiKey: "AIzaSyBcDfOERDpRT_nz9zX1_dw-T-CqUsi8G2E",
+    authDomain: "newp-4fdf8.firebaseapp.com",
+    databaseURL: "https://newp-4fdf8.firebaseio.com",
+    projectId: "newp-4fdf8",
+    storageBucket: "newp-4fdf8.appspot.com",
+    messagingSenderId: "55268558667",
+    appId: "1:55268558667:web:15582b0f78ba4dc931cace"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
 </script> 
+  <h1> Authentication </h1> 
+  <div> 
+   <input type="email" placeholder="email" id="email"> 
+   <input type="password" placeholder="password" id="pass"> 
+   <button id="signin" onclick="signIn">Sign In</button> 
+   <button id="signup" onclick="signup">Sign Up</button> 
+  </div> 
   <script>
-    var ch="", hismove="", hisstats=0;
-    var n=prompt("name");
-    if(n === "p1"){
-    firebase.database().ref('player2').once('value',function(snapshot){
-      snapshot.forEach(function(childSnapshot){
-      var child = childSnapshot.val();
-      hismove = child['move'];
-      hisstats = child['status'];
-      });
-    });
-    function scissor(){
-      ch="scissor";
-      firebase.database().ref("player1").set({
-      "status": 1,
-      "move" : ch
-    });
+    const auth=firebase.auth();
+    var mail=document.getElementById("email").value;  
+    var pass=document.getElementById("email").value;
+    function signUp()
+    {
+      const promise=auth.createUserWithEmailAndPassword(mail, pass);
+      promise.catch(e=>alert(e.message));
+      
+      alert("Signed Up Account Created");
     }
-    function paper(){
-      ch="paper";
-      firebase.database().ref("player1").set({
-      "status": 1,
-      "move" : ch
-      });
+    function signIn()
+    {
+      const promise=auth.signInWithEmailAndPassword(mail, pass);
+      promise.catch(e=>alert(e.message));
+      
+      alert("Signed in "+mail);
     }
-    function rock(){
-      ch="rock";
-      firebase.database().ref("player1").set({
-      "status": 1,
-      "move" : ch
-      });
-    }
-    if(hisstats == 1){
-    if(ch === "stone"){
-      switch(hismove){
-        case "stone":alert("Tie");
-          break;
-        case "paper":alert("Lost");
-          break;
-        case "scissor":alert("WON");
-          break;
-      }
-    }
-    if(ch === "paper"){
-      switch(hismove){
-        case "paper":alert("Tie");
-          break;
-        case "scissor":alert("Lost");
-          break;
-        case "stone":alert("WON");
-          break;
-      }
-    }
-    if(ch === "scissor"){
-      switch(hismove){
-        case "scissor":alert("Tie");
-          break;
-        case "stone":alert("Lost");
-          break;
-        case "paper":alert("WON");
-          break;
-      }
-    }
-   }
-  }
-   else{
-    firebase.database().ref('player2').once('value',function(snapshot){
-      snapshot.forEach(function(childSnapshot){
-      var child = childSnapshot.val();
-      hismove=child['move'];
-      hisstats=child['status'];
-      });
-    });
-    function scissor(){
-      ch="scissor";
-      firebase.database().ref("player2").set({
-      "status": 1,
-      "move" : ch
-    });
-    }
-    function paper(){
-      ch="paper";
-      firebase.database().ref("player2").set({
-      "status": 1,
-      "move" : ch
-      });
-    }
-    function rock(){
-      ch="rock";
-      firebase.database().ref("player2").set({
-      "status": 1,
-      "move" : ch
-      });
-    }
-    if(hisstats == 1){
-    if(ch === "stone"){
-      switch(hismove){
-        case "stone":alert("Tie");
-          break;
-        case "paper":alert("Lost");
-          break;
-        case "scissor":alert("WON");
-          break;
-      }
-    }
-    if(ch === "paper"){
-      switch(hismove){
-        case "paper":alert("Tie");
-          break;
-        case "scissor":alert("Lost");
-          break;
-        case "stone":alert("WON");
-          break;
-      }
-    }
-    if(ch === "scissor"){
-      switch(hismove){
-        case "scissor":alert("Tie");
-          break;
-        case "stone":alert("Lost");
-          break;
-        case "paper":alert("WON");
-          break;
-      }
-    }
-   }
-  }
   </script> 
-  <h1 id="score">STONE ONLINE</h1> 
-  <img src="https://www.dropbox.com/s/ye70l2g7r9foebv/Scissors.png?dl=1" onclick="scissor()"> 
-  <img src="https://www.dropbox.com/s/8ta1efd2vxubs3m/Rock.png?dl=1" onclick="rock()"> 
-  <img src="https://www.dropbox.com/s/kcdao4uygmgu3nn/Paper.png?dl=1" onclick="paper()"> 
  </body>
 </html>
