@@ -31,8 +31,8 @@
   <script>
     const auth=firebase.auth();
     var mail=document.getElementById("email").value;  
-    var pass=document.getElementById("email").value;
-    function signUp()
+    var pass=document.getElementById("pass").value;
+    function signup()
     {
       const promise=auth.createUserWithEmailAndPassword(mail, pass);
       promise.catch(e=>alert(e.message));
