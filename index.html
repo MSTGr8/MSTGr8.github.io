@@ -34,7 +34,6 @@
     var pass=document.getElementById("pass").value;
     function signup()
     {
-      alert("let's see")
       const promise=auth.createUserWithEmailAndPassword(mail, pass);
       promise.catch(e=>alert(e.message));
       
