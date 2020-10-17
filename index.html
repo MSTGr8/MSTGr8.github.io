@@ -1,10 +1,52 @@
-<!doctype html>
 <html>
- <head></head> 
+ <head> 
+  <style>
+     *{
+       font-size:45px;
+       margin:0;
+       padding:0;
+      }
+     body{
+       background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+     }
+     ul{
+       list-style-type:none;
+       background-color:#e334e5;
+       margin:20px;
+       padding:20px;
+overflow:hidden;
+     }
+    ul li{
+      padding:10px;
+      margin:10px;
+    }
+#me{
+ background-color:#25a2db;
+float:left;
+clear:both;
+ border-radius:0 50px 50px 50px;
+}
+#he{
+ background-color:#1ed65b;
+float:right;
+clear:both;
+ border-radius:50px 0 50px 50px;
+}
+    #name{
+       width:82%;
+       border:solid 5px red;
+    }
+    #msg{
+       position:fixed;
+       bottom:0;
+    }
+   </style> 
+ </head> 
  <body> 
   <!-- The core Firebase JS SDK is always required and must be listed first --> 
   <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script> 
-  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries --> 
   <script>
@@ -21,31 +63,53 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 </script> 
-  <h1> Authentication </h1> 
-  <div> 
-   <input type="email" placeholder="email" id="email"> 
-   <input type="password" placeholder="password" id="pass"> 
-   <button id="signin" onclick="signIn()">Sign In</button> 
-   <button id="signup" onclick="signup()">Sign Up</button> 
+  <ul id="h"></ul> 
+  <div id="msg"> 
+   <input placeholder="message" autocomplete="off" id="name"> 
+   <button onclick="writeData()">SEND</button> 
   </div> 
   <script>
-    const auth=firebase.auth();
-    var mail=document.getElementById("email");  
-    var pass=document.getElementById("pass");
-    function signup()
-    {
-      const promise=auth.createUserWithEmailAndPassword(mail.value, pass.value);
-      promise.catch(e=>alert(e.message));
-      
-      alert("Signed Up Account Created");
+   const auth=firebase.auth();
+    alert("please give a star😊😊");
+    const x=prompt("enter name");
+      function writeData(){
+      mssg= document.getElementById("name").value;
+      if((mssg !== "") && (x !== "") && (x !== null)){ 
+     firebase.database().ref("messages").push().set({
+      "sender" : x,
+      "msg" : mssg
+    });
+  }
+  else{
+    alert("message or name can't be empty")
+  }
+  document.getElementById("name").value="";
+  }
+  firebase.database().ref('messages').on('child_added',function(snapshot){
+      var html="";
+      if(snapshot.val().sender !== x){
+      html+="<li id='me'>"
+      html+=snapshot.val().sender+": "+snapshot.val().msg;
+      html+="</li>"
+      document.getElementById("h").innerHTML+=html;
     }
-    function signIn()
-    {
-      const promise=auth.signInWithEmailAndPassword(mail.value, pass.value);
-      promise.catch(e=>alert(e.message));
-      
-      alert("Signed in "+mail);
+    else{
+      html+="<li id='he'>"
+      html+=snapshot.val().sender+": "+snapshot.val().msg;
+      html+="</li>"
+      document.getElementById("h").innerHTML+=html;
     }
+    });
+   auth.onAuthStateChanged(function (user){
+      if(user)
+      {
+        alert("active user "+user.email);
+      }
+      else
+      {
+        alert("no active user at present");
+      }
+    });
   </script> 
  </body>
 </html>
