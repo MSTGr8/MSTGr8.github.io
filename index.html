@@ -1,116 +1,33 @@
-<html>
- <head> 
- <meta name="viewport" content="width=device-width, initial-scale=1"> 
-  <style>
-     *{
-       font-size:45px;
-       margin:0;
-       padding:0;
-      }
-     body{
-       background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-     }
-     ul{
-       list-style-type:none;
-       background-color:#e334e5;
-       margin:20px;
-       padding:20px;
-overflow:hidden;
-     }
-    ul li{
-      padding:10px;
-      margin:10px;
-    }
-#me{
- background-color:#25a2db;
-float:left;
-clear:both;
- border-radius:0 50px 50px 50px;
-}
-#he{
- background-color:#1ed65b;
-float:right;
-clear:both;
- border-radius:50px 0 50px 50px;
-}
-    #name{
-       width:82%;
-       border:solid 5px red;
-    }
-    #msg{
-       position:fixed;
-       bottom:0;
-    }
-   </style> 
- </head> 
- <body> 
-  <!-- The core Firebase JS SDK is always required and must be listed first --> 
-  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script> 
-  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries --> 
-  <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBcDfOERDpRT_nz9zX1_dw-T-CqUsi8G2E",
-    authDomain: "newp-4fdf8.firebaseapp.com",
-    databaseURL: "https://newp-4fdf8.firebaseio.com",
-    projectId: "newp-4fdf8",
-    storageBucket: "newp-4fdf8.appspot.com",
-    messagingSenderId: "55268558667",
-    appId: "1:55268558667:web:15582b0f78ba4dc931cace"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script> 
-  <ul id="h"></ul> 
-  <div id="msg"> 
-   <input placeholder="message" autocomplete="off" id="name"> 
-   <button onclick="writeData()">SEND</button> 
-  </div> 
-  <script>
-   const auth=firebase.auth();
-    alert("please give a star😊😊");
-    const x=prompt("enter name");
-      function writeData(){
-      mssg= document.getElementById("name").value;
-      if((mssg !== "") && (x !== "") && (x !== null)){ 
-     firebase.database().ref("messages").push().set({
-      "sender" : x,
-      "msg" : mssg
-    });
-  }
-  else{
-    alert("message or name can't be empty")
-  }
-  document.getElementById("name").value="";
-  }
-  firebase.database().ref('messages').on('child_added',function(snapshot){
-      var html="";
-      if(snapshot.val().sender !== x){
-      html+="<li id='me'>"
-      html+=snapshot.val().sender+": "+snapshot.val().msg;
-      html+="</li>"
-      document.getElementById("h").innerHTML+=html;
-    }
-    else{
-      html+="<li id='he'>"
-      html+=snapshot.val().sender+": "+snapshot.val().msg;
-      html+="</li>"
-      document.getElementById("h").innerHTML+=html;
-    }
-    });
-   auth.onAuthStateChanged(function (user){
-      if(user)
-      {
-        alert("active user "+user.email);
-      }
-      else
-      {
-        alert("no active user at present");
-      }
-    });
-  </script> 
- </body>
-</html>
+<html><head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> 
+    </head>
+    <body>
+        <script src="index.js"></script>
+        <header class="text-gray-500 bg-gray-900 body-font">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-teal-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-xl">GOgo NOTES: notes on the go</span>
+    </a>
+    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+      <input id="email" class="bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-3/2 w-7/2 md:w-full" placeholder="Your Title Goes Here" type="email"> 
+    </nav>
+    <button onclick="save()" class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">SAVE
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+        <div class="relative mb-4">
+        <label for="message" class="leading-7 text-sm text-gray-600">NOTES</label>
+        <textarea id="message" name="message" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+      </div>
+        <div class="place-self-center text-center p-11 m-11" id="notes area">
+      <ul class="place-self-center" id="notes area">
+          
+        </ul>
+            </div>
+</body></html>
