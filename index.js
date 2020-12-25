@@ -41,7 +41,7 @@ function show(){
     </div>
 
     <div class="p-4 flex space-x-4">
-     <button id="$(index)" onclick="deleteme(this.id)" class="w-1/2 px-4 py-3 text-center text-pink-100 bg-pink-600 rounded-lg hover:bg-pink-700 hover:text-white font-bold text-sm">Delete Note</button>
+     <button id=`+index+` onclick="deleteme(this.id)" class="w-1/2 px-4 py-3 text-center text-pink-100 bg-pink-600 rounded-lg hover:bg-pink-700 hover:text-white font-bold text-sm">Delete Note</button>
     </div>
   </div>`;
     });
@@ -53,6 +53,7 @@ function show(){
     }
 }
 function deleteme(index){
+  console.log(index);
   var stored=localStorage.getItem("notes")
     if(stored == null)
     {
@@ -62,7 +63,7 @@ function deleteme(index){
     {
       storedObj=JSON.parse(stored);
     }
-    storedObj.splice(index, 1);
+    storedObj.splice(index , 1);
     localStorage.setItem("notes" , JSON.stringify(storedObj));
     show();
 }
