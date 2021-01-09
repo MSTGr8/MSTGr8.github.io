@@ -1,4 +1,4 @@
-show();
+
 function save(){
     note=document.getElementById('message');
     var html="";
