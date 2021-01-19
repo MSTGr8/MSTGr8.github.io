@@ -72,7 +72,8 @@ recognition.onstart=function(){
     console.log("started");
 };
 recognition.onresult=function(event){
-    output=event.results[0][0].transcript;
+    const current = event.resultIndex;
+    output=event.results[current][0].transcript;
     document.getElementById("message").innerHTML=output;
 };
 function speech(){
