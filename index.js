@@ -1,4 +1,5 @@
-
+const SpeechRecognition=window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition=new SpeechRecognition();
 function save(){
     note=document.getElementById('message');
     var html="";
@@ -66,4 +67,15 @@ function deleteme(index){
     storedObj.splice(index , 1);
     localStorage.setItem("notes" , JSON.stringify(storedObj));
     show();
+}
+recognition.onstart=function(){
+    console.log("started");
+};
+recognition.onresult=function(event){
+    output=event.results[0][0].transcript;
+    document.getElementById("message").innerHTML=output;
+    save();
+};
+function speech(){
+    recognition.start();
 }
