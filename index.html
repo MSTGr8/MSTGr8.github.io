@@ -34,6 +34,13 @@
   <div class="place-self-center text-center p-11 m-11" id="notes area"> 
    <ul class="place-self-center" id="notes area"> 
    </ul> 
-  </div> 
+  </div>
+  <script>
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/sw.js')
+           .then(function() { console.log("Service Worker Registered"); });
+}
+</script>
  </body>
 </html>
