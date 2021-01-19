@@ -74,7 +74,6 @@ recognition.onstart=function(){
 recognition.onresult=function(event){
     output=event.results[0][0].transcript;
     document.getElementById("message").innerHTML=output;
-    save();
 };
 function speech(){
     recognition.start();
