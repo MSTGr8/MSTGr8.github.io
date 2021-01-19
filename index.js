@@ -73,7 +73,7 @@ recognition.onstart=function(){
 };
 recognition.onresult=function(event){
     const current = event.resultIndex;
-    output=event.results[current][0].transcript;
+    var output=event.results[current][0].transcript;
     document.getElementById("message").innerHTML=output;
 };
 function speech(){
