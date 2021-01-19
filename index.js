@@ -1,7 +1,7 @@
 const SpeechRecognition=window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition=new SpeechRecognition();
 const btnn=document.getElementById("btnn");
-btnn.addEventListener("click",speech());
+btnn.addEventListener("click",speech);
 function save(){
     note=document.getElementById('message');
     var html="";
