@@ -37,7 +37,7 @@ function show(){
       </div>
       <div class="w-full pt-9 pr-4">
         <h3 class="font-bold text-gray-500">`+(index+1)+`</h3>
-        <pre class="py-4 text-sm text-gray-600">`+element+`</pre>
+        <p class="py-4 text-sm text-gray-600">`+element+`</p>
       </div>
     </div>
 
