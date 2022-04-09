@@ -8,7 +8,7 @@
   "theme_color": "#2A3443",
   "icons": [
     {
-      "src": "IMG_20201224_161819.png",
+      "src": "maskable_icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
